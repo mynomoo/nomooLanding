@@ -3,9 +3,9 @@
 
 const ImpactTrackingSection = () => {
   return (
-    <>
+    <div className="dark:bg-white bg-green-500">
     {/* Large Screen */}
-    <div className="hidden lg:flex justify-center items-center md:p-2 lg:p-[5%] bg-white dark:bg-white">
+    <div className="hidden bg-green-400 lg:flex justify-center items-center md:p-2 lg:p-[5%] bg-white dark:bg-white">
       <img
         src="/section3/lgScreen.svg"
         alt="Section 3 Large Screen"
@@ -26,9 +26,9 @@ const ImpactTrackingSection = () => {
     <img
       src="/section3/mobileScreen.svg"
       alt="Section 3 Mobile Screen"
-      className="w-[160%] h-[160%] md:hidden "
+      className="w-[160%] h-[160%] md:hidden dark:bg-white"
     />
-  </>
+  </div>
   );
 };
 

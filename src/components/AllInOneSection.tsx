@@ -5,7 +5,7 @@ import Gplay from '../../public/heroSection/google_play.png'
 
 const AllInOneSection = () => {
   return (
-    <section className='w-full hidden mdf:flex justify-center bg-white px-4 py-14'>
+    <section className='w-full hidden mdf:flex justify-center bg-white dark:bg-white px-4 py-14'>
       <div className='w-[1420px] h-[416px] bg-[#014421] rounded-[24px] flex flex-col md:flex-row items-center justify-between relative overflow-hidden px-[52px] py-[52px]'>
         {/* Left Section */}
         <div className='flex-1 flex flex-col justify-center text-white z-10 pr-10'>

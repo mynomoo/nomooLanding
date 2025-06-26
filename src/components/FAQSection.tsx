@@ -27,7 +27,7 @@ const FAQSection = () => {
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null)
 
   return (
-    <section className='w-full overflow-hidden flex flex-col items-center py-10 sm:py-20 bg-white px-4 sm:px-6'>
+    <section className='w-full overflow-hidden flex flex-col items-center py-10 sm:py-20 bg-white dark:bg-white px-4 sm:px-6'>
       <div className='max-w-5xl w-full mx-auto text-center mb-8'>
         <div className='text-[#00C853] font-semibold text-base mb-2'>FAQs</div>
         <h2 className='text-2xl sm:text-3xl md:text-4xl font-bold text-black mb-2'>
@@ -47,7 +47,7 @@ const FAQSection = () => {
           return (
             <div
               key={index}
-              className='bg-white border border-gray-200 rounded-lg p-4 flex flex-col cursor-pointer transition hover:shadow w-full sm:w-[calc(50%-0.5rem)]'
+              className='bg-white dark:bg-white border border-gray-200 rounded-lg p-4 flex flex-col cursor-pointer transition hover:shadow w-full sm:w-[calc(50%-0.5rem)]'
               onClick={() => setOpenFaqIndex(isOpen ? null : index)}
             >
               <div className='flex items-center justify-between'>

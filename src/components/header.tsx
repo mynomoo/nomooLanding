@@ -8,7 +8,7 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <div className="bg-white w-full relative">
+    <div className="bg-white dark:bg-white w-full relative">
       {/* Header Bar */}
       <header className="flex justify-between items-center w-full max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
         {/* Logo */}
@@ -48,16 +48,16 @@ const Header = () => {
             onClick={() => setIsMenuOpen(true)}
             aria-label="Open menu"
           >
-            <span className="block w-5 h-0.5 bg-white" />
-            <span className="block w-5 h-0.5 bg-white mt-1" />
-            <span className="block w-5 h-0.5 bg-white mt-1" />
+            <span className="block w-5 h-0.5 bg-white dark:bg-white" />
+            <span className="block w-5 h-0.5 bg-white dark:bg-white mt-1" />
+            <span className="block w-5 h-0.5 bg-white dark:bg-white mt-1" />
           </button>
         )}
       </header>
 
       {/* Full-Screen Mobile Menu */}
       {isMenuOpen && (
-        <div className="fixed inset-0 bg-white z-40 flex flex-col px-6 py-6">
+        <div className="fixed inset-0 bg-white dark:bg-white z-40 flex flex-col px-6 py-6">
           {/* Close Icon */}
           <button
             onClick={() => setIsMenuOpen(false)}

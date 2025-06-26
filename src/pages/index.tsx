@@ -9,7 +9,7 @@ import Footer from '../components/Footer'
 
 export default function Home() {
   return (
-    <div className='bg-white h-screen'>
+    <div className='bg-white dark:bg-white h-screen'>
       <HeroSection />
       <GreenChoicesSection />
       <ImpactTrackingSection />

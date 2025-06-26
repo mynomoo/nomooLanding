@@ -14,7 +14,7 @@ const GreenChoicesSection = () => {
     </div>
 
     {/* Medium Screen */}
-     <div  className="hidden md:flex justify-center my-8 lg:hidden bg-white dark:bg-white">
+     <div  className="hidden md:flex dark:bg-white justify-center my-8 lg:hidden bg-white dark:bg-white">
     <img
       src="/section2/mediumScreenSection2.svg"
       alt="Section 2"
@@ -37,7 +37,7 @@ const GreenChoicesSection = () => {
     <img
       src="/section2/smallScreenSection2b.svg"
       alt="Section 2A"
-      className="w-full h-full md:hidden "
+      className="w-full h-full md:hidden dark:bg-white"
     />
     
     
