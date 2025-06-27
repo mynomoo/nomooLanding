@@ -15,3 +15,9 @@ body {
   color: var(--foreground);
   font-family: 'Figtree', Arial, Helvetica, sans-serif;
 }
+
+@media (max-width: 1024px) and (min-width: 1024px) {
+  .ipadpro\:hidden {
+    display: none !important;
+  }
+}
