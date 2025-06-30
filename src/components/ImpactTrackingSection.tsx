@@ -26,7 +26,7 @@ const ImpactTrackingSection = () => {
     <img
       src="/section3/mobileScreen.svg"
       alt="Section 3 Mobile Screen"
-      className="w-[160%] h-[160%] md:hidden dark:bg-white"
+      className="w-[160%] h-[160%] md:hidden bg-white dark:bg-white"
     />
   </div>
   );
