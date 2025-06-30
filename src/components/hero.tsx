@@ -2,13 +2,13 @@ import Image from "next/image";
 import AppStore from "../../public/heroSection/appStore.svg";
 import Gplay from "../../public/heroSection/google_play.png";
 import CowFace from "../../public/heroSection/Frame.png";
-import ScrollDown from "../../public/heroSection/scrolldown.svg";
+// import ScrollDown from "../../public/heroSection/scrolldown.svg";
 // import GreenChoicesSection from './greenChoicesSection'
 
 const AppStoreImage = AppStore;
 const GplayImage = Gplay;
 const CowFaceImage = CowFace;
-const ScrollDownImage = ScrollDown;
+// const ScrollDownImage = ScrollDown;
 const HeroSection = () => {
   return (
     <>
