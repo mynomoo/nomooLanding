@@ -1,6 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const Footer = () => {
+  const [email, setEmail] = useState<string>('');
+  const [status, setStatus] = useState<'loading' | 'success' | string | null>(null);
+
+  async function submitEmailToWishlist(email: string, source: string) {
+    const res = await fetch('/api/wishlist', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, source }),
+    });
+    return res.json();
+  }
+
+  const handleFooterSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setStatus('loading');
+    const result = await submitEmailToWishlist(email, 'footer-subscribe');
+    if (result.success) {
+      setStatus('success');
+      setEmail('');
+    } else {
+      setStatus(result.error || 'error');
+    }
+  };
+
   return (
     <footer className="w-full bg-gradient-to-b from-[#F5FFF5] to-white border-t border-[#E6F6E6] pt-8 pb-4 px-4">
       <div className="max-w-7xl mx-auto w-full flex flex-col lg:flex-row justify-between items-start gap-10">
@@ -32,18 +56,24 @@ const Footer = () => {
         {/* Right: Newsletter */}
         <div className="flex flex-col gap-2 min-w-[240px] flex-1">
           <div className="font-semibold text-[#222] mb-2">Subscribe to our newsletter</div>
-          <form className="flex flex-col sm:flex-row gap-2 w-full">
+          <form className="flex flex-col sm:flex-row gap-2 w-full" onSubmit={handleFooterSubmit}>
             <input
               type="email"
               placeholder="Enter your email"
+              value={email}
+              onChange={e => setEmail(e.target.value)}
               className="flex-1 rounded-md border border-[#E6F6E6] px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#00C853]"
+              required
             />
             <button
               type="submit"
               className="bg-[#00C853] text-white font-semibold rounded-md px-4 py-2 text-sm hover:bg-[#009e3a] transition"
+              disabled={status === 'loading'}
             >
               Subscribe
             </button>
+            {status === 'success' && <p className="text-green-600 text-sm ">Thank you for subscribing!</p>}
+            {status && status !== 'success' && status !== 'loading' && <p className="text-red-600 text-sm">{status}</p>}
           </form>
           <p className="text-[#888] text-xs max-w-xs">
             Informative insights and practical knowledge to align your values team effectively. No jargon. No clutter.

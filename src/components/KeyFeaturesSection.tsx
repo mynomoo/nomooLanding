@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 const features = [
   'Live availability and instant booking',
@@ -18,8 +18,68 @@ const ArrowIcon = () => (
 )
 
 const KeyFeaturesSection = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [email, setEmail] = useState<string>('');
+  const [status, setStatus] = useState<'loading' | 'success' | string | null>(null);
+
+  async function submitEmailToWishlist(email: string, source: string) {
+    const res = await fetch('/api/wishlist', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, source }),
+    });
+    return res.json();
+  }
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setStatus('loading');
+    const result = await submitEmailToWishlist(email, 'keyfeatures-modal');
+    if (result.success) {
+      setStatus('success');
+      setEmail('');
+    } else {
+      setStatus(result.error || 'error');
+    }
+  };
+
   return (
     <div className='w-full bg-white dark:bg-white flex flex-col items-center p-[8%] md:p-0'>
+      {/* Modal */}
+      {isModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 backdrop-blur-sm">
+          <div className="bg-gradient-to-b from-[#F5FFF5] to-white rounded-lg shadow-lg p-8 max-w-md w-full relative">
+            <button
+              className="absolute top-2 right-2 text-2xl text-gray-400 hover:text-gray-700"
+              onClick={() => setIsModalOpen(false)}
+              aria-label="Close modal"
+            >
+              &times;
+            </button>
+            <h2 className="text-2xl font-bold mb-4 text-center">Join the Waitlist</h2>
+            <p className="mb-4 text-gray-700 text-center">Experience NoMoo first! Enter your email to join our exclusive waitlist and be the first to know when we launch.</p>
+            <form className="flex flex-col gap-3" onSubmit={handleSubmit}>
+              <input
+                type="email"
+                placeholder="Enter your email"
+                value={email}
+                onChange={e => setEmail(e.target.value)}
+                className="rounded-md border border-[#E6F6E6] px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#00C853]"
+                required
+              />
+              <button
+                type="submit"
+                className="bg-[#0AAD0B] text-white font-semibold rounded-md px-4 py-2 text-sm hover:bg-[#009e3a] transition"
+                disabled={status === 'loading'}
+              >
+                Join Now
+              </button>
+              {status === 'success' && <p className="text-green-600 text-sm">Thank you for joining!</p>}
+              {status && status !== 'success' && status !== 'loading' && <p className="text-red-600 text-sm">{status}</p>}
+            </form>
+          </div>
+        </div>
+      )}
       <div className='flex flex-col justify-center items-center mb-12 md:px-[20%]'>
         <p className='text-[#0AAD0B] text-xl'>Key Features</p>
         <p className='text-bold font-bold text-black text-center text-[25px] md:text-[35px]'>Delivery That&apos;s Better for You and the Planet</p>
@@ -51,6 +111,7 @@ const KeyFeaturesSection = () => {
           <a
             href='#'
             className='inline-flex items-center px-6 py-2 bg-[#0AAD0B] text-white font-semibold rounded-md hover:bg-[#009e3a] transition text-sm'
+            onClick={e => { e.preventDefault(); setIsModalOpen(true); }}
           >
             Experience it now
             <svg
