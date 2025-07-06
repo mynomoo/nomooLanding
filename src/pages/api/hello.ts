@@ -5,9 +5,9 @@ import { MongoClient } from 'mongodb';
 type Data = {
   name?: string;
   message?: string;
-  collections?: any[];
+  collections?: unknown[];
   error?: string;
-  insertResult?: any;
+  insertResult?: unknown;
 };
 
 const uri = 'mongodb+srv://nomooveganapp:LmgPnBhCRnmfpDCv@cluster0.3qcovqo.mongodb.net/NomooLanding?retryWrites=true&w=majority&appName=Cluster0';
@@ -24,10 +24,10 @@ export default async function handler(
     const testEmail = 'test@example.com';
     const insertResult = await db.collection('wishlistUsers').insertOne({ email: testEmail, createdAt: new Date() });
     // Example: list collections
-    const collections = await db.listCollections().toArray();
+    const collections: unknown[] = await db.listCollections().toArray();
     await client.close();
     res.status(200).json({ message: 'Connected to MongoDB!', collections, insertResult });
-  } catch (error) {
+  } catch (error: unknown) {
     res.status(500).json({ error: (error as Error).message });
   }
 }

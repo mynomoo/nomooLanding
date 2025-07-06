@@ -47,7 +47,7 @@ export default function DataPage() {
       } else {
         setError(data.error || 'Failed to fetch users');
       }
-    } catch (err) {
+    } catch {
       setError('Failed to fetch users');
     }
     setLoading(false);

@@ -17,8 +17,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           .toArray();
         await client.close();
         return res.status(200).json({ success: true, users });
-      } catch (error: any) {
-        return res.status(500).json({ error: error.message });
+      } catch (error: unknown) {
+        return res.status(500).json({ error: (error as Error).message });
       }
     } else {
       return res.status(405).json({ error: 'Method not allowed' });
@@ -49,20 +49,20 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const result = await collection.insertOne(doc);
     await client.close();
     res.status(200).json({ success: true, insertedId: result.insertedId });
-  } catch (error: any) {
-    if (error.code === 11000) {
+  } catch (error: unknown) {
+    if ((error as { code?: number }).code === 11000) {
       // Duplicate key error
       return res.status(409).json({ error: 'Email already exists' });
     }
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: (error as Error).message });
   }
 }
 
-async function submitEmailToWishlist(email: string, source: string) {
-  const res = await fetch('/api/wishlist', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ email, source }),
-  });
-  return res.json();
-} 
+// async function submitEmailToWishlist(email: string, source: string) {
+//   const res = await fetch('/api/wishlist', {
+//     method: 'POST',
+//     headers: { 'Content-Type': 'application/json' },
+//     body: JSON.stringify({ email, source }),
+//   });
+//   return res.json();
+// } 
