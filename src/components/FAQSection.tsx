@@ -1,14 +1,16 @@
 import React, { useState } from 'react'
 
 const faqs = [
-  { q: 'Convallis metus nisi habitasse sit?', a: 'Answer content here.' },
-  { q: 'Proin bibendum vivamus in viverra ante. Aliquam malesuada tortor nec mauris aliquam vel.', a: 'Answer content here.' },
-  { q: 'Sodales velit lacus ut nulla et posuere. Turpis nec tempus diam mauris.', a: 'Answer content here.' },
-  { q: 'Lectus risus neque neque enim. Risus lobortis proin consequat consequat faucibus ornare.', a: 'Answer content here.' },
-  { q: 'Mattis feugiat elementum bibendum vel morbi arcu. Tristique proin malesuada enim eget commodo.', a: 'Answer content here.' },
-  { q: 'Lacus interdum egestas consectetur nec sit. Vestibulum facilisis nunc non morbi donec ut tristique sit.', a: 'Answer content here.' },
-  { q: 'Lacus bibendum enim amet lacinia ornare risus justo. Tellus at gravida sem commodo posuere tortor.', a: 'Answer content here.' },
-  { q: 'Lacus bibendum enim amet lacinia ornare risus justo. Tellus at gravida sem commodo posuere tortor.', a: 'Answer content here.' },
+  { q: 'What is NoMoo?', a: 'NoMoo is a smart app designed to help vegans, vegetarians, and eco-conscious eaters find and enjoy plant-based food options using AI, geo-location, and user insights.' },
+  { q: 'Is NoMoo affordable compared to other delivery and booking apps?', a: 'Yes, NoMoo offers competitive rates, often with lower associated costs compared to other apps in the market.' },
+  { q: 'How does the restaurant finder work?', a: 'Using real-time geo-location, NoMoo shows nearby vegan and vegetarian-friendly restaurants, with filters for cuisine, price, ratings, and dietary preferences.' },
+  { q: 'What is the Smart Menu Scanner?', a: `NoMoo's proprietary AI can instantly scan and analyze restaurant menus. It highlights vegan and vegetarian options and even shows dishes that can be modified by removing certain ingredients—helping users make smart choices when booking a table or ordering delivery.` },
+  { q: 'Does NoMoo offer delivery services?', a: 'Yes, NoMoo enables users to order food for delivery from partner restaurants. The delivery service is reliable and comparable to other major delivery apps.' },
+  { q: 'Does NoMoo track the environmental impact of meals?', a: 'Yes. NoMoo calculates the estimated carbon footprint of your meal to support more eco-friendly food choices.' },
+  { q: 'Is there a way to get personalized food recommendations?', a: 'Absolutely. Based on your dietary preferences, restrictions, and history, NoMoo suggests dishes and restaurants tailored to your lifestyle.' },
+  { q: 'Can I leave reviews or read others\' experiences?', a: 'Yes. Users can rate dishes and restaurants and share insights with the NoMoo community, helping others make informed choices.' },
+  { q: 'Can NoMoo help with food allergies?', a: 'Yes, allergy detection is part of the premium features, helping users avoid ingredients they are allergic to when analyzing menus.' },
+  { q: 'How do restaurants benefit from NoMoo?', a: 'Restaurants can subscribe to NoMoo to increase visibility, certify menu items, and access data insights on customer preferences and sustainability trends.' },
 ]
 
 const PlusIcon = () => (
@@ -35,8 +37,8 @@ const FAQSection = () => {
         </h2>
         <p className='text-[#888] text-sm sm:text-base'>
           Don&apos;t find the answers you were looking for? Contact us at{' '}
-          <a href='mailto:nomoo@gmail.com' className='text-[#00C853] font-semibold'>
-            nomoo@gmail.com
+          <a href='mailto:info@mynomoo.com' className='text-[#00C853] font-semibold'>
+          info@mynomoo.com
           </a>
         </p>
       </div>
@@ -51,7 +53,7 @@ const FAQSection = () => {
               onClick={() => setOpenFaqIndex(isOpen ? null : index)}
             >
               <div className='flex items-center justify-between'>
-                <span className='font-semibold text-sm sm:text-base text-black'>
+                <span className='font-semibold mr-2 text-sm sm:text-base text-black'>
                   {faq.q}
                 </span>
                 <span>{isOpen ? <MinusIcon /> : <PlusIcon />}</span>
